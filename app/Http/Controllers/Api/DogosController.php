@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Dogo;
+//use App\Models\Dogo;
+
+use App\DogosControllerTabla;
 
 class DogosController extends Controller
 {
@@ -15,8 +17,8 @@ class DogosController extends Controller
 
         $nuevaCaptura = new Dogo();
         $idTipoRaza = 
-            intval($request->input('raza'));
-        $nuevaCaptura->raza = 
+            intval($request->input('id_tipo_raza'));
+        $nuevaCaptura->id_tipo_raza = 
            $idTipoRaza;
         // 1 - Schnauzer, 2 - Pitbull, 3 - Pomeranian, 4 - Chihuahau - 5 - Shih Tzu
         if ($idTipoRaza == 1) {
@@ -29,7 +31,7 @@ class DogosController extends Controller
             $nuevaCaptura->pomeranian =
                 $request->input('pomeranian');
         } else if ($idTipoRaza == 4) {
-            $nuevaCaptura->chihuahau =
+            $nuevaCaptura->chihuahua =
                 $request->input('chihuahua');
         } else {
             $nuevaCaptura->shih_tzu =
@@ -37,15 +39,11 @@ class DogosController extends Controller
         }
 
         $nuevaCaptura->color =
-            $request->input('color');
+            $request->input('colordogo');
         $nuevaCaptura->tamaño =
-            $request->input('tamaño');
+            $request->input('tamañodogo');
         $nuevaCaptura->espacio_libre =
-            $request->input('espacio_libre');
-        $nuevaCaptura->dogos_en_casa =
-            $request->input('dogos_en_casa');
-        $nuevaCaptura->cachorro_o_adulto =
-            $request->input('cachorro_o_adulto');
+            $request->input('dogo_adulto_cachorro');
                 
         return $respuesta;
     }
